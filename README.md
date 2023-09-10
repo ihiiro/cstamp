@@ -15,8 +15,8 @@ A simple script that batch-stamps files.
 
 ## Usage
 Two local files are required by the stamper:
-		..* .stamp
-		..* .stamplist
+		* .stamp
+		* .stamplist
 
 .stamp should contain the stamp, interpretation of non-printable characters is supported.
 Example:
