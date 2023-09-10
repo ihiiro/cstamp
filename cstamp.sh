@@ -8,15 +8,15 @@
 #!/bin/bash
 
 prpnd=$(cat .cstamp)
+files=$(cat .cstamplist)
 
-for file in $(find -type f -name "*.c" -o -name "*.h"); do
+for file in $files; do
 	tmp=$(mktemp)
 	echo "/*" >> $tmp
 	echo >> $tmp
 	echo "$prpnd" >> $tmp
 	echo >> $tmp
 	echo "*/" >> $tmp
-	echo >> $tmp
 	echo >> $tmp
 	echo -n "$(cat $file)" >> $tmp
 	echo -n "$(cat $tmp)" > $file
