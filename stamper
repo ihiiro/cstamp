@@ -12,13 +12,19 @@
 # ██████╔╝░░░██║░░░██║░░██║██║░╚═╝░██║██║░░░░░███████╗██║░░██║
 # ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝
 
+strt_time=$(date +%s.%2N)
 prpnd=$(cat .stamp)
 files=$(cat .stamplist)
-
+count=0
 for file in $files; do
 	tmp=$(mktemp)
-	echo "$prpnd" >> $tmp
+	echo -e "$prpnd" >> $tmp
 	echo -n "$(cat $file)" >> $tmp
 	echo -n "$(cat $tmp)" > $file
 	rm -f $tmp
+	count=$(( $count + 1 ))
 done
+end_time=$(date +%s.%2N)
+exec_time=$(echo "$end_time - $strt_time" | bc)
+echo -ne "\033[1;97mStamped $count files in "
+printf "%.2f seconds\n" $exec_time
