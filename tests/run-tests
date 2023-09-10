@@ -15,7 +15,7 @@ echo "subdir/subdirfile.h" >> .stamplist
 # tests
 echo -e "\n\033[1;97mTesting \033[1;32mstamper\033[1;97m script\n"
 ../stamper
-echo "Stamps:"
+echo "Stamps (2):"
 if [ "$(cat rootfile.c)" = "TEST-STAMP" ]; then
 	echo -e "	\033[1;32msuccess"
 else
