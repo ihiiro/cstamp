@@ -15,6 +15,7 @@ A simple script that batch-stamps files.
 
 ## Usage
 Two local files are required by the stamper:
+
 		- .stamp
 		- .stamplist
 
