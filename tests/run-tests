@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# prepare data and files
 touch rootfile.c
 mkdir subdir
 touch subdir/subdirfile.h
@@ -8,7 +10,9 @@ touch should-not-stamp
 echo "TEST-STAMP" > .stamp
 echo "rootfile.c" >> .stamplist
 echo "subdir/subdirfile.h" >> .stamplist
-echo -e "\033[1;97mTesting \033[1;32mstamper\033[1;97m script\n"
+
+# tests
+echo -e "\033[1;97mTesting \033[1;32mstamp\033[1;97m script\n"
 ../stamp > /dev/null
 echo -n "file in root directory "
 if [ "$(cat rootfile.c)" = "TEST-STAMP" ]; then
@@ -28,6 +32,8 @@ if [ "$(cat should-not-stamp)" = "" ]; then
 else
 	echo -e "		\033[1;31m[FAILURE]"
 fi
+
+# cleanup
 rm -rf rootfile.c
 rm -rf subdir
 rm -rf .stamp
