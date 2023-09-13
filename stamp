@@ -13,16 +13,23 @@
 # ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝
 
 strt_time=$(date +%s.%2N)
-prpnd=$(cat .stamp)
-files=$(cat .stamplist)
+stamplist=$(cat .stamplist)
 count=0
 
 # stamp loop
-for file in $files; do
+for line in $stamplist; do
+	# parse
+	path=$(echo "$line" | cut -d ':' -f 1)
+	stamp_path=$(echo "$line" | cut -d ':' -f 2)
+	skip_chars=$(echo "$line" | cut -d ':' -f 3)
+	new_skip_chars=$(wc -m $stamp_path | cut -d ' ' -f 1)
+
+	# destamp/restamp and update stamplist
 	tmp=$(mktemp)
-	echo -e "$prpnd" >> $tmp
-	echo -n "$(cat $file)" >> $tmp
-	echo -n "$(cat $tmp)" > $file
+	cat $stamp_path >> $tmp
+	dd if=$path of=$tmp bs=1 skip=$skip_chars oflag=append conv=notrunc status=none
+	sed -i "s/$line/$path:$stamp_path:$new_skip_chars/" .stamplist
+	echo -n "$(cat $tmp)" > $path
 	rm -f $tmp
 	count=$(( $count + 1 ))
 done
