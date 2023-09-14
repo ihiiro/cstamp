@@ -5,9 +5,9 @@
 ░╚═══██╗░░░██║░░░██╔══██║██║╚██╔╝██║██╔═══╝░
 ██████╔╝░░░██║░░░██║░░██║██║░╚═╝░██║██║░░░░░
 ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░
+A bash script for stamping specific files with a predetermined precursor.
 ```
 # v1.0.0-release
-A bash script for stamping specific files with a predetermined precursor.
 # Usage
 Create a .stamplist file in your working directory, each line in the file must be formatted according to this standard:
 ```
