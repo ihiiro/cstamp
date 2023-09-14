@@ -1,17 +1,4 @@
 #!/bin/bash
-# ███████╗██╗██╗░░░░░███████╗░░░░░░██╗░░░░░██╗░██████╗████████╗░░░░░░
-# ██╔════╝██║██║░░░░░██╔════╝░░░░░░██║░░░░░██║██╔════╝╚══██╔══╝░░░░░░
-# █████╗░░██║██║░░░░░█████╗░░█████╗██║░░░░░██║╚█████╗░░░░██║░░░█████╗
-# ██╔══╝░░██║██║░░░░░██╔══╝░░╚════╝██║░░░░░██║░╚═══██╗░░░██║░░░╚════╝
-# ██║░░░░░██║███████╗███████╗░░░░░░███████╗██║██████╔╝░░░██║░░░░░░░░░
-# ╚═╝░░░░░╚═╝╚══════╝╚══════╝░░░░░░╚══════╝╚═╝╚═════╝░░░░╚═╝░░░░░░░░░
-# ░██████╗████████╗░█████╗░███╗░░░███╗██████╗░███████╗██████╗░
-# ██╔════╝╚══██╔══╝██╔══██╗████╗░████║██╔══██╗██╔════╝██╔══██╗
-# ╚█████╗░░░░██║░░░███████║██╔████╔██║██████╔╝█████╗░░██████╔╝
-# ░╚═══██╗░░░██║░░░██╔══██║██║╚██╔╝██║██╔═══╝░██╔══╝░░██╔══██╗
-# ██████╔╝░░░██║░░░██║░░██║██║░╚═╝░██║██║░░░░░███████╗██║░░██║
-# ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝
-
 strt_time=$(date +%s.%2N)
 stamplist=$(cat .stamplist)
 count=0
@@ -24,15 +11,15 @@ for line in $stamplist; do
 	if [ "$(cat $stamp_path)" = "" ]; then
 		continue
 	fi
-	skip_chars=$(echo "$line" | cut -d ':' -f 3)
-	new_skip_chars=$(wc -m $stamp_path | cut -d ' ' -f 1)
+	skip_bytes=$(echo "$line" | cut -d ':' -f 3)
+	new_skip_bytes=$(wc -c $stamp_path | cut -d ' ' -f 1)
 
 	# destamp/restamp and update stamplist
 	tmp=$(mktemp)
 	cat $stamp_path >> $tmp
-	dd if=$path of=$tmp bs=1 skip=$skip_chars oflag=append conv=notrunc status=none
-	sed -i "s#$line#$path:$stamp_path:$new_skip_chars#" .stamplist
-	echo -n "$(cat $tmp)" > $path
+	dd if=$path of=$tmp bs=1 skip=$skip_bytes oflag=append conv=notrunc status=none
+	sed -i "s#$line#$path:$stamp_path:$new_skip_bytes#" .stamplist
+	cat $tmp > $path
 	rm -f $tmp
 	count=$(( $count + 1 ))
 done

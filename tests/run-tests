@@ -1,10 +1,20 @@
 #!/bin/bash
-
+# ░██████╗████████╗░█████╗░███╗░░░███╗██████╗░
+# ██╔════╝╚══██╔══╝██╔══██╗████╗░████║██╔══██╗
+# ╚█████╗░░░░██║░░░███████║██╔████╔██║██████╔╝
+# ░╚═══██╗░░░██║░░░██╔══██║██║╚██╔╝██║██╔═══╝░
+# ██████╔╝░░░██║░░░██║░░██║██║░╚═╝░██║██║░░░░░
+# ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░
+#
+# 		Created by Hiro (ihiiro)
+#		yassirelyakine@gmail.com
+ 
 # prepare data and files
 touch rootfile.c
 mkdir subdir
 touch subdir/subdirfile.h
 touch stamp
+touch emptystamp
 touch .stamplist
 touch should-not-stamp
 echo "TEST-STAMP" > stamp
@@ -60,3 +70,4 @@ rm -rf subdir
 rm -rf stamp
 rm -rf .stamplist
 rm -rf should-not-stamp
+rm -rf emptystamp
