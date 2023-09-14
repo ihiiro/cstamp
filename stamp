@@ -1,4 +1,16 @@
 #!/bin/bash
+# ░██████╗████████╗░█████╗░███╗░░░███╗██████╗░
+# ██╔════╝╚══██╔══╝██╔══██╗████╗░████║██╔══██╗
+# ╚█████╗░░░░██║░░░███████║██╔████╔██║██████╔╝
+# ░╚═══██╗░░░██║░░░██╔══██║██║╚██╔╝██║██╔═══╝░
+# ██████╔╝░░░██║░░░██║░░██║██║░╚═╝░██║██║░░░░░
+# ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░░░░░
+# A bash script for stamping specific files with a predetermined precursor.
+#
+# 		Created by Hiro(ihiiro) in 09/14/2023
+# 		Updated on 09/14/2023
+# 		Github repository: https://github.com/ihiiro/stamp
+ 
 strt_time=$(date +%s.%2N)
 stamplist=$(cat .stamplist)
 count=0
