@@ -11,6 +11,7 @@
 # 		Updated on 09/14/2023
 # 		Github repository: https://github.com/ihiiro/stamp
 #		License: MIT
+#		v1.0.0-release
  
 # prepare data and files
 touch rootfile.c
