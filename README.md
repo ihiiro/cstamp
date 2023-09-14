@@ -20,11 +20,11 @@ Run the following in your working directory where the requisite files are:
 ```
 ./stamp
 ```
-Alternatively you can move `stamp` to `/usr/local/bin`, set the appropriate permissions and run it as a command:
-```
-stamp
-```
 Also make sure that `tests/run-tests` is successful on your system before using the `stamp` script.
-
+# dependencies
+## shell
+GNU bash v5
+## commands
+date, cat, echo, cut, wc, mktemp, dd, sed, rm, bc, printf, touch, mkdir
 # warnings
 `stamp` relies on SKIP_BYTES (the byte size of the currently applied stamp) to accurately remove that stamp from a file before applying a new one. Therefore, manually editing the stamp on a file or changing the SKIP_BYTES number in a .stamplist entry can cause the script to remove non-stamp portions from your file.
