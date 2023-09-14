@@ -21,6 +21,9 @@ for line in $stamplist; do
 	# parse
 	path=$(echo "$line" | cut -d ':' -f 1)
 	stamp_path=$(echo "$line" | cut -d ':' -f 2)
+	if [ "$(cat $stamp_path)" = "" ]; then
+		continue
+	fi
 	skip_chars=$(echo "$line" | cut -d ':' -f 3)
 	new_skip_chars=$(wc -m $stamp_path | cut -d ' ' -f 1)
 
@@ -28,7 +31,7 @@ for line in $stamplist; do
 	tmp=$(mktemp)
 	cat $stamp_path >> $tmp
 	dd if=$path of=$tmp bs=1 skip=$skip_chars oflag=append conv=notrunc status=none
-	sed -i "s/$line/$path:$stamp_path:$new_skip_chars/" .stamplist
+	sed -i "s#$line#$path:$stamp_path:$new_skip_chars#" .stamplist
 	echo -n "$(cat $tmp)" > $path
 	rm -f $tmp
 	count=$(( $count + 1 ))
