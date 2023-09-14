@@ -10,6 +10,7 @@
 # 		Created by Hiro(ihiiro) in 09/14/2023
 # 		Updated on 09/14/2023
 # 		Github repository: https://github.com/ihiiro/stamp
+#		License: MIT
  
 strt_time=$(date +%s.%2N)
 stamplist=$(cat .stamplist)
