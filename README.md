@@ -16,7 +16,7 @@ FILE_PATH:STAMP_PATH:SKIP_BYTES
 * STAMP_PATH: relative/full path to the file containing the stamp.
 * SKIP_BYTES: used by the script to de-stamp/re-stamp, must be initialized to 0 by the user and should NEVER BE UPDATED BY THE USER AFTERWARDS (otherwise your files will get corrupted).
 
-Run the following in your working directory where the requisite files are:
+Run the following in your working directory where the requisite files are (make sure the script exists in the present working directory, otherwise specify the appropriate path):
 ```
 ./stamp
 ```
